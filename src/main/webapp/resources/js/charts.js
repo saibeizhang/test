@@ -108,7 +108,7 @@ function sparklinePie(params) {
  *          表格类型
  */
 function getChartData(chartId, chartType) {
-    $.get("/saibei_test/refresh?type=" + chartType,function(data){
+    $.get("/refresh?type=" + chartType,function(data){
         if (chartType=='bar') {
             console.log(chartId +"  "+ chartType);
             console.log('bar');
