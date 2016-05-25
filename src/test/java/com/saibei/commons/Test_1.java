@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.HashMap;
+
 /**
  * Created by saibeizhang on 2016/5/23.
  */
@@ -29,6 +31,6 @@ public class Test_1 {
 
     @Test
     public void test_b() {
-        System.out.println(tc.hello());
+
     }
 }

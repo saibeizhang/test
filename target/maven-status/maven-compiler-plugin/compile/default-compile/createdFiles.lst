@@ -1,2 +1,4 @@
+com\huster\mytest\enums\TableTypeEnum.class
 com\huster\mytest\controller\TestController.class
 com\huster\mytest\bll\TestBLL.class
+com\huster\mytest\result\RefreshResult.class

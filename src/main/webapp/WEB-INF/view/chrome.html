@@ -1,15 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <%
-        String path = request.getContextPath();
-    %>
-    <script src="<%=path%>/resources/js/jquery.min.js"></script>
-    <script src="<%=path%>/resources/js/jquery.sparkline.min.js"></script>
-    <script src="<%=path%>/resources/js/charts.js"></script>
+    <script src="/saibei_test/resources/js/jquery.min.js"></script>
+    <script src="/saibei_test/resources/js/jquery.sparkline.min.js"></script>
+    <script src="/saibei_test/resources/js/charts.js"></script>
 
-    <link href="<%=path%>/resources/css/app.min.1.css" rel="stylesheet">
+    <link href="/saibei_test/resources/css/app.min.1.css" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
@@ -18,13 +14,16 @@
         <div class="col-sm-3">
             <div class="mini-charts-item bgm-cyan">
                 <div class="clearfix">
+                    <a style="cursor: hand" onclick="{$('#aaa').show()}">
                     <div class="chart stats-bar"></div>
                     <div class="count">
                         <small>Website Traffics</small>
                         <h2>987,459</h2>
                     </div>
+                    </a>
                 </div>
             </div>
+            <div class="down" style="" hidden="true" id="aaa">fun</div>
         </div>
 
         <div class="col-sm-3">
@@ -39,7 +38,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+       <div class="col-sm-3">
             <div class="mini-charts-item bgm-orange">
                 <div class="clearfix">
                     <div class="chart stats-line"></div>
@@ -113,5 +112,11 @@
         </div>
     </div>
 </div>
+
+<div><button onclick="insertLineChart();">Line</button>
+    <button onclick="insertBarChart()">Bar</button>
+    <button onclick="insertPieChart()">Pie</button>
+</div>
+<div id="test" class="row"></div></div>
 </body>
 </html>

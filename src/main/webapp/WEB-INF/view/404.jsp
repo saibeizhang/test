@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1 style="color: black">404</h1>
+<h1 style="color: black">404.jsp</h1>
 </body>
 </html>

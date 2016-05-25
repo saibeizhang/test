@@ -1,5 +1,12 @@
 *.class
 
+# intelliJ的通通不要
+.idea/*
+*.iml
+
+# 编译后的也不要
+target/*
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

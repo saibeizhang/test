@@ -34,7 +34,7 @@
         <url-pattern>/</url-pattern><!-- 这个地方如果写成/*就会认为controller里面return的字符串也是一个path，实际上我return的是jsp的文件名 -->
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>/index</welcome-file>
+        <welcome-file>/</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>
