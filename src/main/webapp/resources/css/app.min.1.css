@@ -9634,6 +9634,15 @@ a.waves-effect .waves-ripple {
   padding-right: 30px !important;
 }
 
+/**50px  saibeizhang 2016/5/26*/
+.p-50 {
+  color: red;
+  padding: 50px !important;
+}
+/**100px  saibeizhang 2016/5/26*/
+.p-100 {
+  padding: 100px !important;
+}
 /*
  * Generate Font-Size Classes (8px - 20px)
  */

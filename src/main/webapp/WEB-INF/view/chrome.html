@@ -1,13 +1,15 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="/saibei_test/resources/js/jquery.min.js"></script>
-    <script src="/saibei_test/resources/js/jquery.sparkline.min.js"></script>
-    <script src="/saibei_test/resources/js/charts.js"></script>
+    <script src="/test_a/resources/js/jquery.min.js"></script>
+    <script src="/test_a/resources/js/jquery.sparkline.min.js"></script>
+    <script src="/test_a/resources/js/charts.js"></script>
 
-    <link href="/saibei_test/resources/css/app.min.1.css" rel="stylesheet">
+    <link href="/test_a/resources/css/app.min.1.css" rel="stylesheet">
     <title>Title</title>
 </head>
+
+
 <body>
 <div class="mini-charts">
     <div class="row">
@@ -22,10 +24,21 @@
                     </div>
                     </a>
                 </div>
+                <div id='stats-bar' class="chart stats-bar" style="background-color: #245269;border: 2px;display: none;position: absolute; z-index:100"></div>
             </div>
-            <div class="down" style="" hidden="true" id="aaa">fun</div>
+
         </div>
 
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".stats-bar").hover(function() {
+                    $("#stats-bar").animate({opacity: "show"}, "slow");
+                }, function() {
+//                    $("#stats-bar").animate({opacity: "hide"}, "fast");
+                    $("#stats-bar").hide();
+                });
+            });
+        </script>
         <div class="col-sm-3">
             <div class="mini-charts-item bgm-lightgreen">
                 <div class="clearfix">
@@ -113,10 +126,56 @@
     </div>
 </div>
 
-<div><button onclick="insertLineChart();">Line</button>
-    <button onclick="insertBarChart()">Bar</button>
-    <button onclick="insertPieChart()">Pie</button>
+<div><button onclick="insertLineChart('test',Math.round('stats-line-' + Math.random())+2);">Line</button>
+    <button onclick="insertBarChart('test','stats-bar-' + Math.round(Math.random())+2)">Bar</button>
+    <button onclick="insertPieChart('test','stats-pie-' + Math.round(Math.random())+2)">Pie</button>
 </div>
 <div id="test" class="row"></div></div>
+<!--
+<select id="cd-dropdown" class="cd-select">
+    <option value="-1" selected>Choose an animal</option>
+    <option value="1" class="icon-monkey">Monkey</option>
+    <option value="2" class="icon-bear">Bear</option>
+    <option value="3" class="icon-squirrel">Squirrel</option>
+    <option value="4" class="icon-elephant">Elephant</option>
+</select>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $( '#cd-dropdown' ).dropdown();
+    });
+</script>-->
+
+<div class="col-sm-3">
+    <div class="mini-charts-item bgm-cyan">
+        <div class="clearfix">
+            <a style="cursor: hand">
+                <div class="chart stats-bar-100"></div>
+                <div class="count">
+                    <small>Website Traffics</small>
+                    <h2>987,459</h2>
+                </div>
+            </a>
+        </div>
+        <div class="stats-bar-big" style="background-color: #245269;border: 2px;display: none">
+            <div class="chart stats-bar-100"></div>
+            <p>简介</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".mini-charts-item").hover(function() {
+            $(this).find(".stats-bar-big").animate({opacity: "show"}, "slow");
+        }, function() {
+//                    $("#stats-bar").animate({opacity: "hide"}, "fast");
+            $(this).find(".stats-bar-big").hide();
+        });
+    });
+</script>
 </body>
 </html>

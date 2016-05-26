@@ -27,28 +27,30 @@ function getTableColor() {
 /**
  * 增加折线图
  */
-function insertLineChart() {
+function insertLineChart(tagId, chartId) {
     var color = getTableColor();
-    $("#test").append("<div class='col-sm-3'> <div class='mini-charts-item " + color + "'>" +
-        " <div class='clearfix'> <div class='chart chart-line stats-line-3'></div><div class='count'>" +
+    $('#'+tagId).append("<div class='col-sm-3'> <div class='mini-charts-item " + color + "'>" +
+        " <div class='clearfix'> <div class='chart chart-line " + chartId + "'></div><div class='count'>" +
         "<small>Test</small><h2>123456</h2></div></div></div></div>");
-    getChartData('stats-line-3', 'line');
+    getChartData(chartId, 'line');
 }
 /**
  * 增加柱状图
  */
-function insertBarChart() {
-    $("#test").append("<div class='col-sm-3'> <div class='mini-charts-item bgm-blue'>" +
-        " <div class='clearfix'> <div class='chart chart-line stats-line'></div><div class='count'>" +
+function insertBarChart(tagId, chartId) {
+    $('#'+tagId).append("<div class='col-sm-3'> <div class='mini-charts-item bgm-blue'>" +
+        " <div class='clearfix'> <div class='chart chart-line " + chartId + "'></div><div class='count'>" +
         "<small>Test</small><h2>123456</h2></div></div></div></div>");
+    getChartData(chartId, 'bar');
 }
 /**
  * 增加饼状图
  */
-function insertPieChart() {
-    $("#test").append("<div class='col-sm-3'> <div class='mini-charts-item bgm-blue'>" +
-        " <div class='clearfix'> <div class='chart chart-line stats-line'></div><div class='count'>" +
+function insertPieChart(tagId, chartId) {
+    $('#'+tagId).append("<div class='col-sm-3'> <div class='mini-charts-item bgm-blue'>" +
+        " <div class='clearfix'> <div class='chart chart-line " + chartId + "'></div><div class='count'>" +
         "<small>Test</small><h2>123456</h2></div></div></div></div>");
+    getChartData(chartId, 'pie');
 }
 /**
  * @param params
@@ -108,7 +110,7 @@ function sparklinePie(params) {
  *          表格类型
  */
 function getChartData(chartId, chartType) {
-    $.get("/saibei_test/refresh?type=" + chartType,function(data){
+    $.get("/test_a/refresh?type=" + chartType,function(data){
         if (chartType=='bar') {
             console.log(chartId +"  "+ chartType);
             console.log('bar');
@@ -176,7 +178,7 @@ function getChartData(chartId, chartType) {
 
 $(document).ready(function () {
 
-    insertLineChart();
+    insertLineChart('test','stats-line-o');
     if ($('.stats-bar')[0]) {
         getChartData('stats-bar', 'bar');
     }
@@ -198,6 +200,12 @@ $(document).ready(function () {
     if ($('.dash-widget-visits')[0]) {
         getChartData('dash-widget-visitswidget', 'line');
     }
+
+
+    if ($('.stats-bar-100')[0]) {
+        getChartData('stats-bar-100', 'bar');
+    }
+
 });
 
 

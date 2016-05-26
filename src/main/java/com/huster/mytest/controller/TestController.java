@@ -42,6 +42,15 @@ public class TestController {
         return "/404.jsp";
     }
 
+    @RequestMapping(value = "/dropdown-page")
+    public String test_d() {
+        return "/drop.html";
+    }
+
+    @RequestMapping(value = "/ttt")
+    public String test_e() {
+        return "/test.jsp";
+    }
     @RequestMapping(value = "/404")
     public String test_c() { return "/404.jsp"; }
 

@@ -1,19 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: saibeizhang
-  Date: 2016/5/23
-  Time: 16:55
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="/test_a/resources/js/jquery.min.js"></script>
+    <script src="/test_a/resources/js/jquery.sparkline.min.js"></script>
+
+    <script src="/test_a/resources/js/tmp.js"></script>
+
+    <link href="/test_a/resources/css/app.min.1.css" rel="stylesheet">
+
+    <title>表格略缩</title>
 </head>
 <body>
-<h1 style="color: brown">
+<div>
+    <button onclick="insertThumbnailChart($('.row'), 'stats-line-' + Math.round(Math.random())+2, 'line');">Line</button>
+    <button onclick="insertThumbnailChart($('.row'), 'stats-bar-' + Math.round(Math.random())+2, 'bar')">Bar</button>
+    <button onclick="insertThumbnailChart($('.row'), 'stats-pie-' + Math.round(Math.random())+2, 'pie')">Pie</button>
+</div>
 
-    你好
-</h1>
+
+<div class="mini-charts">
+    <div class="row" id="test">
+        <script type="text/javascript">insertThumbnailChart($(".row"),'stats-line', 'line')</script>
 </body>
 </html>
