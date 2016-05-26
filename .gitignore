@@ -1,8 +1,11 @@
-*.class
+﻿*.class
 
 # intelliJ的通通不要
 .idea/*
 *.iml
+.idea/
+.idea/workspace.xml
+/classes/
 
 # 编译后的也不要
 target/*

@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ff1b4cb-f42f-4e77-aa1c-198f29c1fc45" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_1_6_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/test.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/live/test.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/saibei_test_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/saibei_test_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saibei_test.iml" afterPath="$PROJECT_DIR$/saibei_test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huster/mytest/bll/TestBLL.java" afterPath="$PROJECT_DIR$/src/main/java/com/huster/mytest/bll/TestBLL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huster/mytest/controller/TestController.java" afterPath="$PROJECT_DIR$/src/main/java/com/huster/mytest/controller/TestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/404.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/404.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/chrome.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/chrome.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/saibei/commons/Test_1.java" afterPath="$PROJECT_DIR$/src/test/java/com/saibei/commons/Test_1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/live/WEB-INF/classes/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/live/WEB-INF/classes/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/live/WEB-INF/view/404.jsp" afterPath="$PROJECT_DIR$/target/live/WEB-INF/view/404.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/live/WEB-INF/view/chrome.jsp" afterPath="$PROJECT_DIR$/target/live/WEB-INF/view/chrome.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/live/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/target/live/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-    </list>
+    <list default="true" id="9ff1b4cb-f42f-4e77-aa1c-198f29c1fc45" name="Default" comment="" />
     <ignored path="saibei_test.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -1272,6 +1249,9 @@
     </option>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="9ff1b4cb-f42f-4e77-aa1c-198f29c1fc45" name="Default" comment="" />
@@ -1283,7 +1263,7 @@
       <workItem from="1464084375070" duration="7174000" />
       <workItem from="1464140990453" duration="11297000" />
       <workItem from="1464161545723" duration="5109000" />
-      <workItem from="1464167765703" duration="11937000" />
+      <workItem from="1464167765703" duration="12215000" />
     </task>
     <servers />
   </component>
@@ -1320,7 +1300,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50294000" />
+    <option name="totallyTimeSpent" value="50572000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1332,7 +1312,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="1" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1364,6 +1344,14 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
