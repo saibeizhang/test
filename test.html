@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie设置与Ajax请求演示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-shadow {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+            .btn-hover {
+                @apply transform hover:scale-105 transition-all duration-300;
+            }
+            .btn-success {
+                @apply bg-green-500 hover:bg-green-600 text-white;
+            }
+            .input-focus {
+                @apply focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200;
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter min-h-screen flex flex-col">
+    <header class="bg-primary text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-cookie-bite text-2xl"></i>
+                <h1 class="text-xl md:text-2xl font-bold">Cookie与Ajax演示</h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#" class="hover:text-neutral transition-colors">首页</a></li>
+                    <li><a href="#" class="hover:text-neutral transition-colors">文档</a></li>
+                    <li><a href="#" class="hover:text-neutral transition-colors">关于</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-xl p-6 md:p-8 card-shadow mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Cookie设置</h2>
+                <p class="text-gray-600 mb-6">
+                    本页面不再自动设置Cookie。您可以通过下方表单手动设置Cookie的名称和值。
+                </p>
+                
+                <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                    <h3 class="font-semibold text-gray-700 mb-2">当前Cookie状态</h3>
+                    <div id="cookie-status" class="text-gray-600">
+                        正在检查...
+                    </div>
+                </div>
+                
+                <!-- Cookie设置表单 -->
+                <div class="bg-blue-50 p-4 rounded-lg mb-6 animate-fadeIn">
+                    <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
+                        <i class="fa fa-sliders mr-2"></i>自定义Cookie设置
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="cookie-key" class="block text-sm font-medium text-gray-700 mb-1">Cookie名称</label>
+                            <input type="text" id="cookie-key" class="w-full px-3 py-2 border border-gray-300 rounded-lg input-focus" placeholder="输入Cookie名称" value="sso-aicoe-session-id">
+                        </div>
+                        <div>
+                            <label for="cookie-value" class="block text-sm font-medium text-gray-700 mb-1">Cookie值</label>
+                            <input type="text" id="cookie-value" class="w-full px-3 py-2 border border-gray-300 rounded-lg input-focus" placeholder="输入Cookie值" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button id="set-custom-cookie-btn" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-lg btn-hover flex-1">
+                            <i class="fa fa-plus-circle mr-2"></i>设置自定义Cookie
+                        </button>
+                        <button id="check-cookie-btn" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg btn-hover flex-1">
+                            <i class="fa fa-refresh mr-2"></i>检查Cookie
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 常用Cookie预设 -->
+                <div class="mb-4">
+                    <h3 class="font-semibold text-gray-700 mb-2">常用Cookie预设</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="preset-btn bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm transition-colors" data-key="sso-aicoe-session-id" data-value="">
+                            默认会话ID
+                        </button>
+                        <button class="preset-btn bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm transition-colors" data-key="user-id" data-value="user12345">
+                            用户ID
+                        </button>
+                        <button class="preset-btn bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm transition-colors" data-key="theme" data-value="dark">
+                            深色主题
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 md:p-8 card-shadow">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Ajax请求演示</h2>
+                <p class="text-gray-600 mb-6">
+                    点击下方按钮将发起一个Ajax请求到 <code class="bg-gray-100 px-2 py-1 rounded text-sm">https://faai-boe.bytedance.net/aicoe/api/finai/conversation/list</code> 接口。
+                </p>
+                
+                <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                    <h3 class="font-semibold text-gray-700 mb-2">请求状态</h3>
+                    <div id="request-status" class="text-gray-600">
+                        等待请求...
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg mb-6 hidden" id="response-container">
+                    <h3 class="font-semibold text-gray-700 mb-2">响应结果</h3>
+                    <pre id="response-result" class="text-gray-600 overflow-x-auto p-2 bg-gray-100 rounded"></pre>
+                </div>
+                
+                <button id="send-request-btn" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg btn-hover">
+                    <i class="fa fa-paper-plane mr-2"></i>发送请求
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2023 Cookie与Ajax演示</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-primary transition-colors"><i class="fa fa-github"></i></a>
+                    <a href="#" class="hover:text-primary transition-colors"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="hover:text-primary transition-colors"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 设置Cookie函数
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // 获取Cookie函数
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // 页面加载时不再自动设置Cookie，仅检查状态
+        document.addEventListener('DOMContentLoaded', function() {
+            // 显示Cookie状态
+            updateCookieStatus();
+            
+            // 添加按钮事件监听器
+            document.getElementById('set-custom-cookie-btn').addEventListener('click', function() {
+                const cookieKey = document.getElementById('cookie-key').value.trim();
+                const cookieValue = document.getElementById('cookie-value').value.trim();
+                
+                if (!cookieKey) {
+                    showNotification('请输入Cookie名称', 'error');
+                    return;
+                }
+                
+                setCookie(cookieKey, cookieValue, 1);
+                updateCookieStatus();
+                
+                // 添加成功提示
+                showNotification(`已成功设置Cookie: ${cookieKey}`, 'success');
+            });
+            
+            // 常用Cookie预设按钮
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const key = this.getAttribute('data-key');
+                    const value = this.getAttribute('data-value');
+                    
+                    document.getElementById('cookie-key').value = key;
+                    document.getElementById('cookie-value').value = value;
+                    
+                    // 高亮显示当前选择的预设
+                    document.querySelectorAll('.preset-btn').forEach(b => {
+                        b.classList.remove('bg-blue-100', 'text-blue-800');
+                        b.classList.add('bg-gray-100', 'text-gray-800');
+                    });
+                    this.classList.remove('bg-gray-100', 'text-gray-800');
+                    this.classList.add('bg-blue-100', 'text-blue-800');
+                    
+                    showNotification(`已选择预设: ${key}`, 'info');
+                });
+            });
+            
+            document.getElementById('check-cookie-btn').addEventListener('click', updateCookieStatus);
+            document.getElementById('send-request-btn').addEventListener('click', sendAjaxRequest);
+        });
+
+        // 更新Cookie状态显示
+        function updateCookieStatus() {
+            const statusElement = document.getElementById('cookie-status');
+            
+            // 获取所有Cookie
+            const cookies = document.cookie.split('; ');
+            
+            if (cookies.length === 1 && cookies[0] === '') {
+                statusElement.innerHTML = `
+                    <div class="flex items-start">
+                        <i class="fa fa-info-circle text-blue-500 mt-1 mr-2"></i>
+                        <p>当前没有设置任何Cookie</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 显示所有Cookie
+            let cookieHtml = '<div class="space-y-3">';
+            
+            cookies.forEach(cookie => {
+                const [name, value] = cookie.split('=');
+                cookieHtml += `
+                    <div class="flex items-start p-2 bg-gray-50 rounded-lg">
+                        <i class="fa fa-cookie text-amber-500 mt-1 mr-2"></i>
+                        <div>
+                            <p class="text-gray-800 font-medium">${name}</p>
+                            <p class="text-sm text-gray-600">值: ${value}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cookieHtml += '</div>';
+            statusElement.innerHTML = cookieHtml;
+        }
+
+        // 显示通知
+        function showNotification(message, type = 'info') {
+            // 移除之前的通知
+            const existingNotification = document.getElementById('notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // 创建通知元素
+            const notification = document.createElement('div');
+            notification.id = 'notification';
+            notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg animate-fadeIn z-50`;
+            
+            // 设置通知类型样式
+            if (type === 'success') {
+                notification.classList.add('bg-green-50', 'border-l-4', 'border-green-400', 'text-green-700');
+                notification.innerHTML = `<i class="fa fa-check-circle mr-2"></i> ${message}`;
+            } else if (type === 'error') {
+                notification.classList.add('bg-red-50', 'border-l-4', 'border-red-400', 'text-red-700');
+                notification.innerHTML = `<i class="fa fa-exclamation-circle mr-2"></i> ${message}`;
+            } else {
+                notification.classList.add('bg-blue-50', 'border-l-4', 'border-blue-400', 'text-blue-700');
+                notification.innerHTML = `<i class="fa fa-info-circle mr-2"></i> ${message}`;
+            }
+            
+            // 添加到页面
+            document.body.appendChild(notification);
+            
+            // 3秒后自动移除
+            setTimeout(() => {
+                notification.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }, 3000);
+        }
+
+        // 发送Ajax请求
+        function sendAjaxRequest() {
+            const statusElement = document.getElementById('request-status');
+            const responseContainer = document.getElementById('response-container');
+            const responseResult = document.getElementById('response-result');
+            
+            // 重置状态
+            statusElement.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i>请求中...';
+            responseContainer.classList.add('hidden');
+            
+            // 创建XMLHttpRequest对象
+            const xhr = new XMLHttpRequest();
+            
+            // 设置请求方法和URL
+            xhr.open('POST', 'https://faai-boe.bytedance.net/aicoe/api/finai/conversation/list', true);
+            
+            // 设置请求头
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            
+            // 设置超时时间（毫秒）
+            xhr.timeout = 10000;
+            
+            // 监听状态变化
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // 请求成功
+                        statusElement.innerHTML = `
+                            <div class="flex items-start">
+                                <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <p class="text-gray-800 font-medium">请求成功 (状态码: ${xhr.status})</p>
+                            </div>
+                        `;
+                        
+                        // 显示响应结果
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            responseResult.textContent = JSON.stringify(response, null, 2);
+                            responseContainer.classList.remove('hidden');
+                        } catch (e) {
+                            responseResult.textContent = xhr.responseText;
+                            responseContainer.classList.remove('hidden');
+                        }
+                    } else {
+                        // 请求失败
+                        statusElement.innerHTML = `
+                            <div class="flex items-start">
+                                <i class="fa fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                                <p class="text-gray-800 font-medium">请求失败 (状态码: ${xhr.status})</p>
+                                <p class="text-sm text-gray-600">${xhr.statusText}</p>
+                            </div>
+                        `;
+                    }
+                }
+            };
+            
+            // 监听超时
+            xhr.ontimeout = function() {
+                statusElement.innerHTML = `
+                    <div class="flex items-start">
+                        <i class="fa fa-clock-o text-yellow-500 mt-1 mr-2"></i>
+                        <p class="text-gray-800 font-medium">请求超时</p>
+                    </div>
+                `;
+            };
+            
+            // 监听错误
+            xhr.onerror = function() {
+                statusElement.innerHTML = `
+                    <div class="flex items-start">
+                        <i class="fa fa-times-circle text-red-500 mt-1 mr-2"></i>
+                        <p class="text-gray-800 font-medium">网络错误</p>
+                        <p class="text-sm text-gray-600">请检查网络连接或API地址</p>
+                    </div>
+                `;
+            };
+            
+            // 发送请求
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
