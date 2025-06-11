@@ -322,10 +322,10 @@
             
             // 创建XMLHttpRequest对象
             const xhr = new XMLHttpRequest();
-            
+        
             // 设置请求方法和URL
             xhr.open('POST', 'https://faai-boe.bytedance.net/aicoe/api/finai/conversation/list', true);
-            
+            xhr.withCredentials = true;
             // 设置请求头
             xhr.setRequestHeader('Content-Type', 'application/json');
             
